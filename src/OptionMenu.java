@@ -7,7 +7,9 @@ public class OptionMenu extends Account {
     HashMap<Integer, Integer> data = new HashMap<>();
 
     public void getLogin() throws IOException {
-        try {
+        int x = 1;
+        do {
+            try {
             // Mapping of CustomerID and PinNumber
             data.put(987654, 321);
             data.put(123456, 789);
@@ -19,18 +21,20 @@ public class OptionMenu extends Account {
             System.out.println("Enter your PIN Number : ");
             setPinNumber(menuInput.nextInt());
 
-        } catch(Exception e) {
-            System.out.println("Invalid Character(s), Please Input only Numbers");
-        }
+            } catch(Exception e) {
+                System.out.println("Invalid Character(s), Please Input only Numbers");
+                x = 2;
+            }
 
-        int customerID = getCustomerID();
-        int pinNumber = getPinNumber();
+            int customerID = getCustomerID();
+            int pinNumber = getPinNumber();
 
-        if(data.containsKey(customerID) && data.get(customerID) == pinNumber) {
+            if(data.containsKey(customerID) && data.get(customerID) == pinNumber) {
 
-        }
-        else {
-            System.out.println("Wrong Customer ID or Pin Number, Please check again");
-        }
+            }
+            else {
+                System.out.println("Wrong Customer ID or Pin Number, Please check again");
+            }
+        } while(x == 1);
     }
 }
